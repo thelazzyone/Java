@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.*;
 
 //This code will read all csv files and print their name
-public class ReadCSVs {
+public class ReadFiles {
 	public static void main(String[] args)  throws IOException{
 		// TODO Auto-generated method stub
 		
@@ -27,7 +27,7 @@ public class ReadCSVs {
 			
 		}
 		
-		//58 files
+		//Print the total amount of files in the folder 
 		System.out.println("\n" + "Number of files: " + contents.length);
 		
 	}
