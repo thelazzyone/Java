@@ -51,7 +51,7 @@ public class WeatherCal {
 		//not a choice
 	        default:
 	        	System.out.printf("You have entered wrong choice");
-                return;
+                	return;
         }
         
         System.out.println("Weather calculated.");
