@@ -9,7 +9,12 @@ package CodePractice;
  * 				Then testing the rest of the code
  * 				Error at AskUserForFileName
  * 
- * 
+ * 11/1/2021 : Fix AskUserForFileName
+ * 				Move scanUserForInput out of function
+ * 				Error in SearchAllFile
+ * 					Not being able to compare desired file with files in the array
+ *
+ *
  */
 
 //Test path:	D:\\ProgramTestFolder
@@ -24,6 +29,7 @@ public class ModifySpreadSheet {
 	
 	//static List<String> StoreFileNames = new ArrayList<>();
 	static int FileAttempt = 0;
+	static Scanner scanUserInput = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -32,17 +38,19 @@ public class ModifySpreadSheet {
 		
 		AskUserForFilePath();
 		//AskUserForFileName();
+		
+		scanUserInput.close();
 
 	}
 	
 	//ToDo:
 	//ask user for the file path/location
 	public static void AskUserForFilePath() {
-		Scanner scanUserInput = new Scanner(System.in);
+		//Scanner scanUserInput = new Scanner(System.in);
 		
 		System.out.println("Please type in the file path or location:");
 		String UserInput = scanUserInput.next();
-		scanUserInput.close();
+		//scanUserInput.close();
 		
 		System.out.println("Path: " + UserInput + "\n");
 		
@@ -66,34 +74,43 @@ public class ModifySpreadSheet {
 	//ToDo:
 	//ask user for file name
 	public static void AskUserForFileName(String ListofFiles[]) {
-		Scanner scanUserInput = new Scanner(System.in);
-		
 		System.out.println("Please type in the spreadsheet file name:");
 		String UserInput = scanUserInput.next();
-		scanUserInput.close();
 		
-		System.out.println("Input: " + UserInput);
+		//System.out.println("Input: " + UserInput);
 		
-		//SearchForFile(UserInput, ListofFiles);
+		SearchForFile(UserInput, ListofFiles);
 	}
 	
 	
 	//ToDo:
 	//find the file
 	public static void SearchForFile(String File2Search4, String ListOfFiles[]) {
+		System.out.println("This is what we are searching for: " + File2Search4 + "\n");
+		
 		try {
 			for(int numofFiles = 0; numofFiles < ListOfFiles.length; numofFiles++) {
-				System.out.println("File Found.");
-				System.out.println(ListOfFiles[numofFiles]);
+				String currentfilename = ListOfFiles[numofFiles];
+				if(currentfilename == File2Search4) {
+					System.out.println("File found.");
+					System.out.println(ListOfFiles[numofFiles]);
+					return;
+					
+				} else if(numofFiles >= ListOfFiles.length) {
+					System.out.println("File not found, try a different file.");
+					
+				}
+				
+				//System.out.println("File Found.");
+				//System.out.println(ListOfFiles[numofFiles]);
 			}
 			
 		} catch (Exception e) {
-			//add counter
-			
-			System.out.println("Find not found. Try again.");
-			AskUserForFileName(ListOfFiles);
+			System.out.println("\n" + "Error was found while searching for files.");
+			return;
 		}
 		
+		//System.out.println("Something wrong");
 		return;
 	}
 	
