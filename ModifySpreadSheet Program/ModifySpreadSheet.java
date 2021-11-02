@@ -1,5 +1,18 @@
 package CodePractice;
 
+//Started Octorber 10 2021
+
+/*
+ * Changes Log:
+ * -----------------------------
+ * 10/21/2020 : Modifying AskUserForFilePath and ReadAndStoreAllFilesName
+ * 				Then testing the rest of the code
+ * 				Error at AskUserForFileName
+ * 
+ * 
+ */
+
+//Test path:	D:\\ProgramTestFolder
 import java.util.Scanner;
 import java.io.File;
 import java.io.BufferedReader;
@@ -9,7 +22,8 @@ import java.util.*;
 
 public class ModifySpreadSheet {
 	
-	//public static String StoreFileNames[];
+	//static List<String> StoreFileNames = new ArrayList<>();
+	static int FileAttempt = 0;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -30,6 +44,8 @@ public class ModifySpreadSheet {
 		String UserInput = scanUserInput.next();
 		scanUserInput.close();
 		
+		System.out.println("Path: " + UserInput + "\n");
+		
 		ReadAndStoreAllFilesName(UserInput);
 	}
 	
@@ -38,7 +54,12 @@ public class ModifySpreadSheet {
 	public static void ReadAndStoreAllFilesName(String FileLocation) {
 		File filePath = new File(FileLocation);
 		
+		System.out.println("The List of Files: ");
 		String StoreFileNames[] = filePath.list();
+		for(int numberOfFiles = 0; numberOfFiles < StoreFileNames.length; numberOfFiles++) {
+			System.out.println("\t" + StoreFileNames[numberOfFiles]);
+		}
+		
 		AskUserForFileName(StoreFileNames);
 	}
 	
@@ -51,7 +72,9 @@ public class ModifySpreadSheet {
 		String UserInput = scanUserInput.next();
 		scanUserInput.close();
 		
-		SearchForFile(UserInput, ListofFiles);
+		System.out.println("Input: " + UserInput);
+		
+		//SearchForFile(UserInput, ListofFiles);
 	}
 	
 	
