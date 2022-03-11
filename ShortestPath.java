@@ -1,12 +1,10 @@
-package CodeExamples;
-
 import java.lang.Math;
 import java.util.*;
 
 class Solution {
 	//Find the shortest route using x^2 + y^2 = z^2
-	public static List<List<Integer>> limitedPlan(List<List<Integer>> allLocation, int numDelivery) {
-		List<List<Integer>> DeliveryList = new ArrayList<>();
+	public static List<List<Integer>> shortPath(List<List<Integer>> allLocation, int pathlimit) {
+		List<List<Integer>> shortestPath = new ArrayList<>();
 		List<Double> distance = new ArrayList<>();		//contains distance for each location
 		
 		//check if empty
@@ -29,7 +27,7 @@ class Solution {
 		
 		//find the N number of shortest delivery 
 		int counter = 0;
-		while(counter < numDelivery) {
+		while(counter < pathlimit) {
 			double shortDistance = distance.get(0);	//base is first location of list
 			int delivered = 0;
 			for(int i = 0; i < distance.size(); i++) {		//find shortest route
@@ -41,24 +39,24 @@ class Solution {
 			
 			//add shortest route
 			//then remove from the list
-			DeliveryList.add(allLocation.get(delivered));
+			shortestPath.add(allLocation.get(delivered));
 			allLocation.remove(delivered);
 			distance.remove(delivered);
 			counter++;
 		}
 		
 		
-		return DeliveryList;
+		return shortestPath;
 	}
 }
 
 
-public class DeliveryPlan {
+public class ShortestPath {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		List<List<Integer>> listDelivery = new ArrayList<>();
-		int numDelivery = 2;
+		List<List<Integer>> pathlist = new ArrayList<>();
+		int pathlimit = 2;
 		
 		//the 3 location
 		List<Integer> listA = new ArrayList<>();
@@ -74,23 +72,23 @@ public class DeliveryPlan {
 		listC.add(-1);
 		
 		//adding to the delivery list
-		listDelivery.add(listA);
-		listDelivery.add(listB);
-		listDelivery.add(listC);
+		pathlist.add(listA);
+		pathlist.add(listB);
+		pathlist.add(listC);
 		
 		/*
 		//display the list of location position
-		for (int i = 0; i < listDelivery.size(); i++) {
-			System.out.println(listDelivery.get(i));
+		for (int i = 0; i < pathlist.size(); i++) {
+			System.out.println(pathlist.get(i));
 		}
 		 */
 		
 		
-		List<List<Integer>> possibleDelivery = Solution.limitedPlan(listDelivery, numDelivery);
+		List<List<Integer>> shortPath = Solution.limitedPlan(pathlist, pathlimit);
 		
 		//print the result
-		for (int i = 0; i < possibleDelivery.size(); i++) {
-			System.out.println(possibleDelivery.get(i));
+		for (int i = 0; i < shortPath.size(); i++) {
+			System.out.println(shortPath.get(i));
 		}
 
 	}
